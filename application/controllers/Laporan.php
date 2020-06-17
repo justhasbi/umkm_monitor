@@ -15,13 +15,18 @@ class Laporan extends CI_Controller {
 		} else {
 			$user_id = $this->session->userdata('user_id');
 			$data['row'] = $this->outlet_m->get_using_id($user_id);	
-		}
+        }
+        $params = array('outlet_id', 'outlet_name');
+		$this->session->unset_userdata($params);
+        
 		$this->template->load('template', 'laporan/laporan_index', $data);
     }
     
-    public function laporan_data()
-	{
-		$this->template->load('template', 'laporan/laporan_data');
+    public function laporan_data($id)
+	{   
+       
+		$data['row'] = $this->laporan_m->get($id);
+		$this->template->load('template', 'laporan/laporan_data', $data);
     }
 
     public function laporan_detail()

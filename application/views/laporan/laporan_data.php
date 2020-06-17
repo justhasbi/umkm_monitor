@@ -25,18 +25,26 @@
                     <tr>
                         <th style="width:5%;">No</th>
                         <th>ID Outlet</th>
+                        <th>ID Laporan</th>
                         <th>Tanggal</th>
                         <th>Action</th>
                     </tr>
                 </thead>
                 <tbody> 
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                    <td width="25%">
-                        <a href="<?= site_url('laporan/laporan_detail')?>" class="btn btn-xs btn-success"><i class="fa fa-eye"></i> Detail Laporan</a>
-                    </td>
+                    <?php 
+                    $no = 1;
+                    foreach ($row->result() as $key => $data) {?>
+                    <tr>
+                        <td><?= $no++;?></td>
+                        <td><?= $data->outlet_id?></td>
+                        <td><?= $data->laporan_id?></td>
+                        <td><?= $data->tanggal?></td>
+                        <td width="10%">
+                            <a href="<?= site_url('laporan/laporan_detail')?>" class="btn btn-xs btn-success"><i class="fa fa-eye"></i> Detail Laporan</a>
+                        </td>
+                    </tr>    
+                    
+                    <?php }?>
                 </tbody>
             </table>
         </div>
