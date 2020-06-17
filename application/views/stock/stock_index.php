@@ -1,14 +1,6 @@
 <pre>
     <?php print_r($this->session->all_userdata())?>
 </pre>
-<pre>
-<?php 
-    foreach ($row->result() as $key => $data) {
-        print_r($data);
-    }
-?>
-</pre>
-
 <section class="content-header">
     <h1>Outlet <small>Data Outlet</small></h1>
     <ol class="breadcrumb">

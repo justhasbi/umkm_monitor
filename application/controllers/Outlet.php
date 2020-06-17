@@ -18,6 +18,10 @@ class Outlet extends CI_Controller {
 			$user_id = $this->session->userdata('user_id');
 			$data['row'] = $this->outlet_m->get_using_id($user_id);	
 		}
+
+		$params = array('outlet_id', 'outlet_name');
+		$this->session->unset_userdata($params);
+		
 		$this->template->load('template', 'outlet/outlet_data', $data);
 	}
 
