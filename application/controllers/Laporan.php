@@ -15,7 +15,8 @@ class Laporan extends CI_Controller {
 		} else {
 			$user_id = $this->session->userdata('user_id');
 			$data['row'] = $this->outlet_m->get_using_id($user_id);	
-        }
+		}
+		
         $params = array('outlet_id', 'outlet_name');
 		$this->session->unset_userdata($params);
         
@@ -23,7 +24,14 @@ class Laporan extends CI_Controller {
     }
     
     public function laporan_data($id)
-	{   
+	{  
+		$query_get_outletdata = $this->outlet_m->get($id);
+		$row = $query_get_outletdata->row();
+		$params = array(
+			'outlet_id' => $row->outlet_id,
+			'outlet_name' => $row->outlet_name
+		);
+		$this->session->set_userdata($params); 
        
 		$data['row'] = $this->laporan_m->get($id);
 		$this->template->load('template', 'laporan/laporan_data', $data);

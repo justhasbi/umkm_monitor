@@ -2,7 +2,6 @@
     <?php print_r($this->session->all_userdata())?>
 </pre>
 
-<h1>ISINYA LIST LAPORAN</h1>
 <section class="content-header">
     <h1>Laporan <small>Data Laporan</small></h1>
     <ol class="breadcrumb">

@@ -1,3 +1,6 @@
+<pre>
+    <?php print_r($this->session->all_userdata());?>
+</pre>
 
 <section class="content-header">
     <h1>Outlet <small>Outlet data</small></h1>

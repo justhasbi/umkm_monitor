@@ -6,7 +6,7 @@ class Outlet extends CI_Controller {
 	{
 		parent::__construct();
 		check_not_login();
-		$this->load->model('outlet_m');
+		$this->load->model(['outlet_m', 'items_m']);
     }
 
 	public function index()
@@ -80,8 +80,22 @@ class Outlet extends CI_Controller {
 
 	public function detail($id = null)
 	{
-		// $id = $this->input->post('user_id');
-		$data['row'] = $this->outlet_m->get_join_user($id);
+		$query_get_outletdata = $this->outlet_m->get($id);
+		$row = $query_get_outletdata->row();
+		$params = array(
+			'outlet_id' => $row->outlet_id,
+			'outlet_name' => $row->outlet_name
+		);
+		$this->session->set_userdata($params); 
+		
+		$data_produk = $this->items_m->get_join_outlet($id);
+		$data_outlet = $this->outlet_m->get_join_user($id);
+		$data=[
+			'data_outlet' => $data_outlet,
+			'data_produk' => $data_produk
+		];
+
+		// $data['row'] = $this->outlet_m->get_join_user($id);
 		// Setelah di get() kemudian berikan result di data
 		$this->template->load('template', 'outlet/outlet_detail', $data);
 

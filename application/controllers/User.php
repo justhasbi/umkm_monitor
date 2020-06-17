@@ -7,7 +7,7 @@ class User extends CI_Controller {
 		parent::__construct();
 		check_admin();
 		check_not_login();
-		$this->load->model('user_m');
+		$this->load->model(['user_m','outlet_m']);
 		$this->load->library('form_validation');
 	}
 
@@ -133,7 +133,14 @@ class User extends CI_Controller {
 	public function detail($id = null)
 	{
 		// $id = $this->input->post('user_id');
-		$data['row'] = $this->user_m->get($id);
+		$user_data = $this->user_m->get($id);
+		$outlet_data = $this->outlet_m->get_outlet_user($id);
+
+		$data = [
+			'user_data' => $user_data,
+			'outlet_data' => $outlet_data
+		];
+		
 		// Setelah di get() kemudian berikan result di data
 		$this->template->load('template', 'user/user_detail', $data);
 

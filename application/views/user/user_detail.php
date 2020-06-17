@@ -21,19 +21,12 @@
             <div class="box">
             <div class="box-header">
                 <h3 class="box-title">User Detail</h3>
-                <div class="pull-right">
-                    <a href="<?= site_url('user/edit/')?>" class="btn btn-primary btn-flat">
-                        <i class="fa fa-pencil"></i> Update User
-                    </a>
-                </div>
             </div>
-            <pre>
-                <?php ?>
-            </pre>
+
             <div class="box-body">
                 <table class="table table-bordered table-striped table-responsive">
                     <?php
-                        foreach($row->result() as $key => $data) {
+                        foreach($user_data->result() as $key => $data) {
                     ?>
                     <tr>
                         <th>Id User</th>
@@ -75,10 +68,6 @@
                 <div class="box-header">
                     <h3 class="box-title">Cabang Outlet</h3>
                     <div class="pull-right">
-                        <a href="#" class="btn btn-primary btn-flat">
-                            <i class="fa fa-eye"></i> Lihat Outlet
-                        </a>
-
                         <a href="#" class="btn btn-success btn-flat">
                             <i class="fa fa-user-plus"></i> Tambah Outlet
                         </a>
@@ -86,7 +75,7 @@
                 </div>
 
                 <div class="box-body">
-                    <table class="table table-bordered table-striped table-responsive">
+                    <table class="table table-bordered table-striped table-responsive" id="table1">
                         <thead>
                             <tr>
                                 <td>ID Outlet</td>
@@ -96,47 +85,38 @@
                             </tr>
                         </thead>
                         <tbody>
-                            <tr>
-                                <td>OU002</td>
-                                <td>Rena Bakery</td>
-                                <td>Manyaran</td>
-                                <td>
-                                    <a href="#" class="btn btn-success btn-xs">
-                                        <i class="fa fa-folder-o"></i> Detail
-                                    </a>
-                                </td>
-                            </tr>
-                            <tr>
-                                <td>OU003</td>
-                                <td>Lumpia Bangjo</td>
-                                <td>Bendan Ngisor, Semarang</td>
-                                <td>
-                                    <a href="#" class="btn btn-success btn-xs">
-                                        <i class="fa fa-folder-o"></i> Detail
-                                    </a>
-                                </td>
-                            </tr>
-                            
+                            <?php foreach ($outlet_data->result() as $key => $data) { ?>
+                                <tr>
+                                    <td><?= $data->outlet_id;?></td>
+                                    <td><?= $data->outlet_name?></td>
+                                    <td><?= $data->address?></td>
+                                    <td>
+                                        <a href="<?= site_url('outlet/detail/'. $data->outlet_id)?>" class="btn btn-success btn-xs">
+                                            <i class="fa fa-folder-o"></i> Detail
+                                        </a>
+                                    </td>
+                                </tr>
+                            <?php }?>
                         </tbody>
                     </table>
                 </div>
             </div>
         </div>
     </div>
-
+<!-- 
     <div class="row">
         <div class="col-md-12">
             <div class="box">
                 <div class="box-header">
                     <h3 class="box-title">Laporan</h3>
                     <div class="pull-right">
-                        <!-- <div class="form-group">
+                        <div class="form-group">
                             <select name="laporan-periodik" class="form-control">
                                 <option value="">- Harian -</option>
                                 <option value="" >Mingguan</option>
                                 <option value="" >Bulanan</option>
                             </select>
-                        </div> -->
+                        </div>
 
                         <a href="#" class="btn btn-primary btn-flat">
                             <i class="fa fa-eye"></i> Lihat Laporan
@@ -188,5 +168,5 @@
                 </div>
             </div>
         </div>
-    </div>
+    </div> -->
 </section>

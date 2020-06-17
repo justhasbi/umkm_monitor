@@ -10,6 +10,15 @@ class Outlet_m extends CI_Model {
         $query = $this->db->get();
         return $query;
     }
+
+    // User Detail
+    public function get_outlet_user($id = null) {
+        $this->db->from('outlet');
+        $this->db->where('user_id', $id);
+        $query = $this->db->get();
+        return $query;
+    }
+
     // UMKM Product get
     public function get_using_id($id = null) {
         $this->db->from('outlet');

@@ -2,7 +2,6 @@
     <?php print_r($this->session->all_userdata())?>
 </pre>
 
-<h1>ISINYA DATA OUTLET</h1>
 <section class="content-header">
     <h1>Outlet <small>Outlet data</small></h1>
     <ol class="breadcrumb">
