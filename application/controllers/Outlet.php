@@ -12,7 +12,7 @@ class Outlet extends CI_Controller {
 	public function index()
 	{
 		// $data['row'] = $this->outlet_m->get();
-		if($this->fungsi->user_login()->hak_akses == 1){
+		if($this->fungsi->user_login()->hak_akses == 1) {
 			$data['row'] = $this->outlet_m->get();	
 		} else {
 			$user_id = $this->session->userdata('user_id');
@@ -21,7 +21,7 @@ class Outlet extends CI_Controller {
 
 		$params = array('outlet_id', 'outlet_name');
 		$this->session->unset_userdata($params);
-		
+
 		$this->template->load('template', 'outlet/outlet_data', $data);
 	}
 

@@ -16,12 +16,17 @@ class Laporan extends CI_Controller {
 			$user_id = $this->session->userdata('user_id');
 			$data['row'] = $this->outlet_m->get_using_id($user_id);	
 		}
-		$this->template->load('template', 'laporan/laporan_index');
+		$this->template->load('template', 'laporan/laporan_index', $data);
     }
     
     public function laporan_data()
 	{
 		$this->template->load('template', 'laporan/laporan_data');
+    }
+
+    public function laporan_detail()
+	{
+		$this->template->load('template', 'laporan/laporan_detail');
     }
 
     public function laporan_add()

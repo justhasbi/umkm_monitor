@@ -30,14 +30,20 @@
                     </tr>
                 </thead>
                 <tbody>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                    <td width="25%">
-                        <a href="<?= site_url('laporan/laporan_data')?>" class="btn btn-xs btn-info"><i class="fa fa-eye"></i> Lihat Laporan</a>
-                        <a href="<?= site_url('laporan/laporan_add')?>" class="btn btn-xs btn-success"><i class="fa fa-eye"></i> Tambah Laporan</a>
-                    </td>
+                    <?php 
+                    $no = 1;
+                    foreach ($row->result() as $key => $data) { ?>
+                        <tr>
+                            <td><?= $no++;?></td>
+                            <td><?= $data->outlet_id?></td>
+                            <td><?= $data->outlet_name?></td>
+                            <td><?= $data->address?></td>
+                            <td width="25%">
+                                <a href="<?= site_url('laporan/laporan_data/'. $data->outlet_id)?>" class="btn btn-xs btn-info"><i class="fa fa-eye"></i> Lihat Laporan</a>
+                                <a href="<?= site_url('laporan/laporan_add/'. $data->outlet_id)?>" class="btn btn-xs btn-success"><i class="fa fa-eye"></i> Tambah Laporan</a>
+                            </td>
+                        </tr>
+                    <?php }?>
                 </tbody>
             </table>
         </div>

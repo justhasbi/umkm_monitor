@@ -4,21 +4,22 @@
 
 <h1>ISINYA LIST LAPORAN</h1>
 <section class="content-header">
-    <h1>Outlet <small>Outlet data</small></h1>
+    <h1>Laporan <small>Data Laporan</small></h1>
     <ol class="breadcrumb">
-        <li><a href="#"><i class="fa fa-dashboard"></i> Outlet</a></li>
-        <li class="active">data</li>
+        <li><a href="#"><i class="fa fa-dashboard"></i> Laporan</a></li>
+        <li class="active">Data</li>
     </ol>
 </section>
 <!-- main content -->
 <section class="content">
     <div class="box">
         <div class="box-header">
-            <h3 class="box-title">Data Outlet</h3>
+            <h3 class="box-title">Data Laporan Outlet "MAWAR"</h3>
             
         </div>
 
         <div class="box-body">
+            
             <table class="table table-bordered table-striped table-responsive" id="table1">
                 <thead>
                     <tr>
@@ -28,14 +29,13 @@
                         <th>Action</th>
                     </tr>
                 </thead>
-                <tbody>
+                <tbody> 
                     <td></td>
                     <td></td>
                     <td></td>
                     <td></td>
                     <td width="25%">
-                        <a href="<?= site_url('laporan/laporan_data')?>" class="btn btn-xs btn-info"><i class="fa fa-eye"></i> Lihat Laporan</a>
-                        <a href="<?= site_url('laporan/laporan_add')?>" class="btn btn-xs btn-success"><i class="fa fa-eye"></i> Tambah Laporan</a>
+                        <a href="<?= site_url('laporan/laporan_detail')?>" class="btn btn-xs btn-success"><i class="fa fa-eye"></i> Detail Laporan</a>
                     </td>
                 </tbody>
             </table>
