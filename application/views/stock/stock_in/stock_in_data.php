@@ -16,9 +16,11 @@
         <div class="box-header">
             <h3 class="box-title">Barang Masuk</h3>
             <div class="pull-right">
+                <?php if( $this->fungsi->user_login()->hak_akses == 1) {?>  
                 <a href="<?= site_url('stock/stock_in_add/'. $this->session->userdata('outlet_id'))?>" class="btn btn-primary btn-flat">
                     <i class="fa fa-plus"></i> Stok Masuk
                 </a>
+                <?php }?>
                 <a href="<?= site_url('stock/')?>" class="btn btn-primary btn-flat">
                     <i class="fa fa-undo"></i> Kembali
                 </a>
@@ -64,9 +66,11 @@
                             >
                                 <i class="fa fa-eye"></i> Detail
                             </a>
+                            <?php if( $this->fungsi->user_login()->hak_akses == 1) {?>  
                             <a href="<?= site_url('stock/stock_in_del/' . $data->stock_id . '/' . $data->item_id)?>" class="btn btn-xs btn-danger" onclick="return confirm('Yakin Hapus Data')">
                                 <i class="fa fa-trash"></i> Hapus
                             </a>
+                            <?php }?>
                         </td>
                     </tr>
                 <?php endforeach; ?>

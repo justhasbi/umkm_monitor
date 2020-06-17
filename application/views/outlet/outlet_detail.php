@@ -26,11 +26,6 @@
             <div class="box">
                 <div class="box-header">
                     <h3 class="box-title">Outlet Detail</h3>
-                    <div class="pull-right">
-                        <a href="<?= site_url()?>" class="btn btn-primary btn-flat">
-                            <i class="fa fa-pencil"></i> Update Outlet
-                        </a>
-                    </div>
                 </div>
 
                 <div class="box-body">
@@ -78,10 +73,7 @@
                             </tr>
                         <?php endforeach?>
                         </tbody>
-                            
-                            
                     </table>
-                    
                 </div>
             </div>
         </div>

@@ -38,13 +38,15 @@
                         <td><?= $data->user_id;?></td>
                         <td><?= $data->outlet_name;?></td>
                         <td><?= $data->address;?></td>
-                        <td class="text-center" width="220px">   
+                        <td class="text-center" width="220px">
                             <a href="<?= site_url('stock/stock_in_data/'. $data->outlet_id);?>" class="btn btn-info btn-flat btn-xs">
                                 <i class="fa fa-eye"></i> Lihat Histori
                             </a>
+                            <?php if( $this->fungsi->user_login()->hak_akses == 1) {?>  
                             <a href="<?= site_url('stock/stock_in_add/'. $data->outlet_id);?>" class="btn btn-success btn-flat btn-xs">
                                 <i class="fa fa-shopping-cart"></i> Tambah Stok
                             </a>
+                            <?php }?>
                         </td>
                     </tr>
                     <?php }?>

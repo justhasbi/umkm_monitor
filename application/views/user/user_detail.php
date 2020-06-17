@@ -67,11 +67,6 @@
             <div class="box">
                 <div class="box-header">
                     <h3 class="box-title">Cabang Outlet</h3>
-                    <div class="pull-right">
-                        <a href="#" class="btn btn-success btn-flat">
-                            <i class="fa fa-user-plus"></i> Tambah Outlet
-                        </a>
-                    </div>
                 </div>
 
                 <div class="box-body">

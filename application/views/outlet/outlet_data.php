@@ -14,11 +14,13 @@
     <div class="box">
         <div class="box-header">
             <h3 class="box-title">Data Outlet</h3>
+            <?php if( $this->fungsi->user_login()->hak_akses == 1) {?>  
             <div class="pull-right">
                 <a href="<?= site_url('outlet/add')?>" class="btn btn-primary btn-flat">
                     <i class="fa fa-plus"></i> Tambah Outlet
                 </a>
             </div>
+            <?php }?>
         </div>
 
         <div class="box-body">
@@ -50,7 +52,7 @@
                             <a href="<?= site_url('outlet/detail/'.$data->outlet_id);?>" class="btn btn-success btn-flat btn-xs">
                                 <i class="fa fa-user"></i> Detail
                             </a>
-
+                            <?php if( $this->fungsi->user_login()->hak_akses == 1) {?>  
                             <a href="<?= site_url('outlet/edit/'.$data->outlet_id);?>" class="btn btn-primary btn-flat btn-xs">
                                 <i class="fa fa-pencil"></i> Update
                             </a>
@@ -58,6 +60,7 @@
                             <a href="<?= site_url('outlet/delete/'.$data->outlet_id);?>" class="btn btn-danger btn-flat btn-xs">
                                 <i class="fa fa-pencil"></i> Delete
                             </a>
+                            <?php }?>
                         </td>
                     </tr>
                         <?php }?>

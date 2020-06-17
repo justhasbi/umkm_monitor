@@ -11,11 +11,13 @@
     <div class="box">
         <div class="box-header">
             <h3 class="box-title">Data Kategori</h3>
+            <?php if( $this->fungsi->user_login()->hak_akses == 1) {?>  
             <div class="pull-right">
                 <a href="<?= site_url('category/add')?>" class="btn btn-primary btn-flat">
                     <i class="fa fa-plus"></i> Tambah Kategori
                 </a>
             </div>
+            <?php }?>
         </div>
 
         <div class="box-body">
@@ -25,7 +27,9 @@
                         <th>No</th>
                         <th>Nama category</th>
                         <th>Dibuat pada</th>
+                        <?php if( $this->fungsi->user_login()->hak_akses == 1) {?>  
                         <th>Action</th>
+                        <?php }?>  
                     </tr>
                 </thead>
                 <tbody>
@@ -37,6 +41,7 @@
                         <td><?= $no++;?>.</td>
                         <td><?= $data->category_name;?></td>
                         <td><?= $data->created;?></td>
+                        <?php if( $this->fungsi->user_login()->hak_akses == 1) {?>  
                         <td class="text-center" width="220px">   
                             
                             <a href="<?= site_url('category/edit/'.$data->category_id);?>" class="btn btn-primary btn-flat btn-xs">
@@ -47,6 +52,7 @@
                                 <i class="fa fa-pencil"></i> Delete
                             </a>
                         </td>
+                        <?php }?>
                     </tr>
                         <?php }?>
                         
