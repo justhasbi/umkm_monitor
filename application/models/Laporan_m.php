@@ -11,8 +11,20 @@ class Laporan_m extends CI_Model {
         return $query;
     }
 
-    public function laporan_data($id = null)
-    {
-        $this->db->select();
+    public function laporan_add($data)
+    {   
+        $query = $this->db->insert('laporan', $data);
+        return $query;
     }
+
+    public function laporan_add_item($table, $data)
+    {   
+        $query = $this->db->insert->laporan($table, $params);
+        return $query;
+    }
+
+    public function join_laporan()
+	{
+		
+	}
 }

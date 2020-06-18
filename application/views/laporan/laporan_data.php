@@ -39,7 +39,7 @@
                         <td><?= $data->laporan_id?></td>
                         <td><?= $data->tanggal?></td>
                         <td width="10%">
-                            <a href="<?= site_url('laporan/laporan_detail')?>" class="btn btn-xs btn-success"><i class="fa fa-eye"></i> Detail Laporan</a>
+                            <a href="<?= site_url('laporan/laporan_detail/'. $data->laporan_id)?>" class="btn btn-xs btn-success"><i class="fa fa-eye"></i> Detail Laporan</a>
                         </td>
                     </tr>    
                     

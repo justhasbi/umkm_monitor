@@ -5,7 +5,7 @@ class Laporan extends CI_Controller {
 	{
 		parent::__construct();
 		check_not_login();
-        $this->load->model(['laporan_m', 'outlet_m']);
+        $this->load->model(['laporan_m', 'outlet_m', 'items_m']);
     }
 
     public function index()
@@ -37,13 +37,46 @@ class Laporan extends CI_Controller {
 		$this->template->load('template', 'laporan/laporan_data', $data);
     }
 
-    public function laporan_detail()
+	public function laporan_detail()
 	{
 		$this->template->load('template', 'laporan/laporan_detail');
-    }
+	}
 
-    public function laporan_add()
+    public function laporan_add($id)
 	{
+		$query_get_outletdata = $this->outlet_m->get($id);
+		$row = $query_get_outletdata->row();
+		$params = array(
+			'outlet_id' => $row->outlet_id,
+			'outlet_name' => $row->outlet_name
+		);
+		$this->session->set_userdata($params);
+
+		if(isset($_POST['save'])) {
+			$tanggal = $_POST['date'];
+			$outlet_id = $this->session->userdata('outlet_id');
+			$data = [
+				'tanggal' => $tanggal,
+				'outlet_id' => $outlet_id
+			];
+			$this->laporan_m->laporan_add($data);
+		}
+		if($this->db->affected_rows() > 0) {
+			echo "<script>alert('Data Berhasil Disimpan');</script>";
+		}
+			redirect('laporan/add_laporan_item/'. $this->session->userdata('outlet_id'));
+		
+		
 		$this->template->load('template', 'laporan/laporan_form');
 	}
+	
+	public function add_laporan_item($id = null)
+	{
+		$produk = $this->items_m->get_join_outlet($id);
+		$data = ['produk' => $produk];
+		$this->template->load('template', 'laporan/laporan_item_form', $data);
+	}
+
+
+
 }
