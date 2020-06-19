@@ -1,6 +1,3 @@
-<pre>
-    <?php print_r($this->session->all_userdata())?>
-</pre>
 <section class="content-header">
     <h1>Outlet <small>Data Outlet</small></h1>
     <ol class="breadcrumb">

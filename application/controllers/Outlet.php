@@ -101,5 +101,4 @@ class Outlet extends CI_Controller {
 
 	}
 
-	
 }

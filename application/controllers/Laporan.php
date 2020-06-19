@@ -37,13 +37,20 @@ class Laporan extends CI_Controller {
 		$this->template->load('template', 'laporan/laporan_data', $data);
     }
 
-	public function laporan_detail()
+	public function laporan_detail($id = null)
 	{
-		$this->template->load('template', 'laporan/laporan_detail');
+		$data_outlet = $this->laporan_m->outlet_join_laporan($id);
+		$data_laporan = $this->laporan_m->join_laporan($id);
+		$data = [
+			'data_outlet' => $data_outlet,
+			'data_laporan' => $data_laporan
+		];
+		$this->template->load('template', 'laporan/laporan_detail', $data);
 	}
 
     public function laporan_add($id)
 	{
+		// insert session data
 		$query_get_outletdata = $this->outlet_m->get($id);
 		$row = $query_get_outletdata->row();
 		$params = array(
@@ -51,32 +58,41 @@ class Laporan extends CI_Controller {
 			'outlet_name' => $row->outlet_name
 		);
 		$this->session->set_userdata($params);
+		// batas
+		$data['row'] = $this->items_m->get_join_outlet($id);
 
-		if(isset($_POST['save'])) {
-			$tanggal = $_POST['date'];
-			$outlet_id = $this->session->userdata('outlet_id');
-			$data = [
-				'tanggal' => $tanggal,
-				'outlet_id' => $outlet_id
+		$this->template->load('template', 'laporan/laporan_form', $data);
+	}
+
+	public function proses_insert_laporan()
+	{	
+		
+		
+		$data_laporan = array(
+			'outlet_id' => $this->input->post('outlet_id'),
+		);
+		$res = $this->db->insert('laporan', $data_laporan);
+        $last_id = $this->db->insert_id();
+		
+		$item_id 	= $this->input->post('item_id');
+		$price 		= $this->input->post('price');
+		$terjual 	= $this->input->post('jumlah');
+
+		for($i = 0; $i< count($item_id); $i++) {
+			$data_laporan_item[] = [
+				'item_id' 	=> $item_id[$i],
+				'price' 	=> $price[$i],
+				'terjual' 	=> $terjual[$i],
+				'laporan_id'=> $last_id,
+				'sub_total'	=> $sub_total[$i] = $price[$i] * $terjual[$i]
 			];
-			$this->laporan_m->laporan_add($data);
 		}
-		if($this->db->affected_rows() > 0) {
-			echo "<script>alert('Data Berhasil Disimpan');</script>";
+		$response = $this->laporan_m->laporan_add_item($data_laporan, $data_laporan_item);
+
+		if ($this->db->affected_rows() > 0) {
+			$this->session->set_flashdata('success', 'Laporan Berhasil Disimpan');
 		}
-			redirect('laporan/add_laporan_item/'. $this->session->userdata('outlet_id'));
-		
-		
-		$this->template->load('template', 'laporan/laporan_form');
+		redirect('laporan/laporan_data/'. $this->session->userdata('outlet_id'));
 	}
-	
-	public function add_laporan_item($id = null)
-	{
-		$produk = $this->items_m->get_join_outlet($id);
-		$data = ['produk' => $produk];
-		$this->template->load('template', 'laporan/laporan_item_form', $data);
-	}
-
-
 
 }

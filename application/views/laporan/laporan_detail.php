@@ -1,7 +1,3 @@
-<pre>
-    <?php print_r($this->session->all_userdata())?>
-</pre>
-
 <!-- main content -->
 <section class="content">
     <div class="box">
@@ -13,17 +9,18 @@
         <div class="box-body">
             <div class="row">
                 <div class="col-md-6">
-                    <h4>OUTLET MAWAR</h4>
-                    <p>ID Laporan : L001</p>
-                    <p>Tanggal : 12/06/2020</p>
+                <?php foreach ($data_outlet->result() as $key => $data2) {?>
+                
+                    <h4><strong><?= $data2->outlet_name?></strong></h4>
+                    <p>ID Laporan : <strong><?= $data2->laporan_id?></strong></p>
+                    <p>Tanggal : <strong><?= $data2->tanggal?></strong></p>
                 </div>
+                <?php }?>
             </div> <br>
             <table class="table table-bordered table-striped table-responsive">
                 <thead>
                     <tr>
                         <th style="width:5%;">No</th>
-                        <!-- <th>ID Outlet</th>
-                        <th>ID User</th> -->
                         <th>Produk</th>
                         <th>Jumlah</th>
                         <th>Harga</th>
@@ -31,18 +28,18 @@
                     </tr>
                 </thead>
                 <tbody>
+                    <?php 
+                    $no = 1;
+                    foreach ($data_laporan->result() as $key => $data) {?>
                     <tr>
-                        <td>x</td>
-                        <td>x</td>
-                        <td>x</td>
-                        <td>x</td>
-                        <td>x</td>
+                        <td><?= $no++;?></td>
+                        <td><?= $data->product_name;?></td>
+                        <td><?= $data->terjual;?></td>
+                        <td><?= $data->price;?></td>
+                        <td><?= $data->sub_total;?></td>
                     </tr>
-                    <tr>
-                        <th>Total</th>
-                        <td colspan="3"></td>
-                        <td>Rp. 20.000</td>
-                    </tr>
+                    <?php }?>
+                    
                 </tbody>
             </table>
         </div>

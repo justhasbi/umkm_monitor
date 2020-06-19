@@ -1,7 +1,3 @@
-<pre>
-    <?php print_r($this->session->all_userdata())?>
-</pre>
-
 <section class="content-header">
     <h1>Produk</h1>
     <ol class="breadcrumb">
