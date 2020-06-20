@@ -6,7 +6,7 @@ class Outlet extends CI_Controller {
 	{
 		parent::__construct();
 		check_not_login();
-		$this->load->model(['outlet_m', 'items_m']);
+		$this->load->model(['outlet_m', 'items_m', 'user_m']);
     }
 
 	public function index()
@@ -37,13 +37,24 @@ class Outlet extends CI_Controller {
 		// Get data from user = user_id
 		$outlet = new stdClass();
 		$outlet->outlet_id = null;
-		$outlet->user_id = null;
+		// $outlet->user_id = null;
 		$outlet->outlet_name = null;
 		$outlet->address = null;
 		$outlet->outlet_desc = null;
+		
+		// form helper dropdown
+		$query_user = $this->user_m->get();
+		$user[null] = "- pilih -";
+		foreach ($query_user->result() as $qusr) {
+			$user[$qusr->user_id] = $qusr->username;
+		}
+
+
 		$data = array(
 			'page' => 'add',
-			'row' => $outlet
+			'row' => $outlet,
+			'user' => $user,
+			'selecteduser' => null
 		);
 
 		$this->template->load('template', 'outlet/outlet_form', $data);
@@ -53,9 +64,18 @@ class Outlet extends CI_Controller {
 		$query = $this->outlet_m->get($id);
 		if($query->num_rows() > 0) {
 			$outlet = $query->row();
+
+			$query_user = $this->user_m->get();
+			$user[null] = "- pilih -";
+			foreach ($query_user->result() as $qusr) {
+				$user[$qusr->user_id] = $qusr->username;
+			}
+
 			$data = array(
 				'page' => 'edit',
-				'row' => $outlet
+				'row' => $outlet,
+				'user' => $user,
+				'selecteduser' => $outlet->user_id
 			);
 			$this->template->load('template', 'outlet/outlet_form', $data);
 		} else {

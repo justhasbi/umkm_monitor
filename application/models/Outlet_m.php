@@ -55,7 +55,7 @@ class Outlet_m extends CI_Model {
 
     public function add($post) {
         $params = [
-            'user_id' => $post['user_id'],
+            'user_id' => $post['user'],
             'outlet_name' => $post['outlet_name'],
             'address' => $post['address'],
             'outlet_desc' => empty($post['outlet_description']) ? null : $post['outlet_description']

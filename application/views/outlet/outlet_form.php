@@ -24,11 +24,13 @@
                 <div class="col-md-4 col-md-offset-4">
 
                     <form action="<?= site_url('outlet/process')?>" method="post">
-                    
+
+                        <!-- form dropdown -->
                         <div class="form-group">
-                            <?php $userid = $this->fungsi->user_login()->user_id;?>
-                            <input type="hidden" name="user_id" value="<?= $userid;?>" class="form-control">
+                            <label for="user">Pilih User *</label>
+                            <?= form_dropdown('user', $user, $selecteduser, ['class' => 'form-control', 'required' => 'required'])?>
                         </div>
+                        <!-- END -->
 
                         <div class="form-group">
                             <input type="hidden" name="outlet_id" value="<?= $row->outlet_id?>" class="form-control">

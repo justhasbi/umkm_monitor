@@ -19,8 +19,8 @@
             <?php }?>
         </div>
 
-        <div class="box-body">
-            <table class="table table-bordered table-striped table-responsive" id="table1">
+        <div class="box-body" style="overflow: scroll;">
+            <table class="table table-bordered table-striped table-responsive" id="table1" style="">
                 <thead>
                     <tr>
                         <th style="width:5%;">No</th>
